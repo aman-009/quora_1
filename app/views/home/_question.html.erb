@@ -1,0 +1,28 @@
+<div id = "q">
+<div class = "qcontent">
+	<li><%=q.title%></li>
+</div>
+
+<div id = "user">
+
+<%=link_to "show" ,url_for(controller: :home,action: :show,q_id:q.id)%> 
+
+<%@users.each do|u| %>
+	<%if u.id == q.user_id%>
+    <li><%=u.email%></li>
+		<%=link_to "visit", url_for(controller: :home,action: :profile,user: u.id)%>
+	
+	<%end%>
+<%end%>
+
+<div id = "qresponse">
+	<%if current_user.id == q.user_id %>
+		
+		<%=link_to "edit", url_for(controller: :home,action: :edit,q_id:q.id)%>
+
+		<%=link_to "delete", url_for(controller: :home,action: :delete,q_id:q.id),method: :post%>
+	
+	<%end%>  
+</div>	
+</div>
+</div>

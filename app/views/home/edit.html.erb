@@ -1,0 +1,9 @@
+<h2>you are inside edit section</h2>
+<%=@question.id%>
+<%=form_tag '/editt' do%>
+	<%=text_field_tag :title %><br>
+	<%=text_area_tag :content %><br>
+	<%=hidden_field_tag :q_id, @question.id %>
+	<%=submit_tag "submit"%>
+<%end%>
+

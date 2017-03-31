@@ -1,0 +1,32 @@
+
+
+
+
+<br>Title:<%=@question.title%><br>
+<h3>Q.<%=@question.content%></h3>
+
+<%if current_user.id != @question.user_id%>
+<%=form_tag '/answer' do%>
+	<%=text_area_tag :content,"Answer here"%>
+	<%=hidden_field_tag :q_id, @question.id %>
+	<%=submit_tag "submit"%>
+<%end%>
+<%end%>
+<h3>Answers</h3>
+<ul>
+<%@answers.each do |a|%>
+	<li><%=a.content%></li>
+	<%=form_tag '/upvote' do%>
+		<%upvote = current_user.upvote.where(answer_id:a.id).first%>
+		<%if upvote%>
+			<%=submit_tag "upvoted"%> 
+		<%else%>
+			<%=submit_tag "upvote"%> 
+		<%end%>
+		<%=hidden_field_tag :q_id, @question.id%>
+		<%=hidden_field_tag :answer, a.id%>
+	<%end%>
+<%end%>
+</ul>
+
+<%=link_to "back" ,url_for(controller: :home,action: :back)%>

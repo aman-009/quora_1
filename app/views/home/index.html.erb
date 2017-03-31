@@ -1,0 +1,23 @@
+
+
+<h3> Ask question </h3>
+
+
+
+
+<%=form_tag '/question' do %>
+	<%=text_field_tag :title, "title"%><br>
+	<%=text_area_tag :content, "content"%><br>
+	<%=submit_tag "submit"%>
+<%end%>
+
+<div id = questions>
+<ul>
+<h4><li>Top Stories for you</li></h4>
+<%@question.each do|q|%>
+	<%=render 'question', :q=>q, :users=>@users%>    <!-- #question is here a partial file  -->
+<%end%>
+
+</ul>
+</div>
+
