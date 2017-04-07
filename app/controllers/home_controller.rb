@@ -1,15 +1,18 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user!
   
   def index
       @question = Question.all()
       @users = User.all()
-          search = params[:search]
-    if search
-      query = "content like '%#{search}%' "
-      @tweets = @tweets.where(query)
-    end
-
+      @answers = Answer.all()
+      if(@upvotes)
+        @upvotes = Upvote.where(user_id: current_user.id)
+      end  
+      search = params[:search]
+      if search
+        query = "content like '%#{search}%' "
+        @tweets = @tweets.where(query)
+      end
   end
 
   def question
@@ -19,6 +22,17 @@ class HomeController < ApplicationController
     return redirect_to '/'
   end
 
+  def ask_question
+  
+  end 
+
+  def question_json
+    title = params["title"]
+    content = params["content"]
+    question = current_user.question.create(title: title,content: content)
+    render json: question#basically json i.e array of object is sent to http 
+  end  
+
   def answer
     q_id = params["q_id"]
     content = params["content"]
@@ -26,7 +40,7 @@ class HomeController < ApplicationController
     redirect_to controller: 'home', action: 'show', q_id:q_id  # best thing remember this
   end
 
-  def upvote
+  def upvote_json
     answer = params[:answer]
     upvote = current_user.upvote.where(answer_id:answer).first
     if upvote
@@ -34,8 +48,20 @@ class HomeController < ApplicationController
     else
       current_user.upvote.create(answer_id:answer)
     end  
-    redirect_to controller: 'home', action: 'show', q_id:params["q_id"]
+    render json: upvote
   end
+
+  def upvote_i #bad code as repetition is there
+    answer = params[:answer]
+    upvote = current_user.upvote.where(answer_id:answer).first
+    if upvote
+      upvote.destroy
+    else
+      current_user.upvote.create(answer_id:answer)
+    end  
+    redirect_to '/'
+  end
+
 
   def follow  
     followee_id = params[:followee_id]
@@ -82,9 +108,15 @@ class HomeController < ApplicationController
   end
     
   def show
+    @users = User.all()
     @question = Question.find(params["q_id"])
     @answers = Answer.where(question_id: params["q_id"])
     @upvotes = Upvote.where(user_id: current_user.id)
   end 
+
+  def logout
+    user_session[:user_id] = nil
+    redirect_to'/users/sign_in'
+  end
 
 end

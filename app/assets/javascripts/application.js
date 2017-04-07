@@ -16,38 +16,74 @@
 //= require_tree .
 
 
-var body = document.getElementById("q");
-	if(body){
-		body.addEventListener('mouseenter',function(){
-			console.log("working");
-		});
-	}
+
+// var myfunction = function(){                                                
+// window.location.replace("http://localhost:3000/show?q_id="+q_id,'height=400,width=600,left=10,top=10,,scrollbars=yes,menubar=no'); 
+// return false;
+// };
+// //page.php?id=" + product_id
+// //http://polimovie.deib.polimi.it/Version3/index.php?campaign=<?php echo $Campaign_id; ?>&worker=<?php echo $Worker_id; ?>'
+// var content = document.getElementsByClassName("qcontent");
+
+// if(content){
+// 	for (var i = 0; i < content.length; i++) {
+// 		var q_id = 10;   
+//     	content[i].addEventListener('click', myfunction, false);
+// 	}
+
+// }
+
+// var createQuestion = document.getElementById("create_question");
+
+// if(createQuestion){
+// 	createQuestion.addEventListener('submit', function(event){
+// 		event.preventDefault();
+// 		console.log("tried submitting");
+// 		var url = "/question_json";
+// 		var content = document.getElementById("content");
+// 		data = {
+// 			title :title.value,
+// 			content: content.value,
+// 			random :12345,
+// 		}
+
+// 		if(!content.value || (content.value && content.value.length<1)){
+// 			//noty({text: "cannot create empty question", theme: "relax", type: 'error', layout: 'topRight'})
+// 			return;
+// 		}
+
+// 		$.ajax({
+// 			url:url,
+// 			method: "POST",
+// 			data: data,  //basically data bheja jaega url pe aur wha pe json form mai recieve hoga
+// 			//a json object is sentto the serveralong with the request
+// 			//aggr bhenjne mai success huw then only this will execute
+// 			success: function(resul) { //result is that new row created in db
+// 				console.log(resul);
+// 				var list = document.getElementById("questions");
+// 				next_elem = list.firstElementChild;
+// 				var new_elem = document.createElement('div');
+// 				new_elem.innerHTML = resul.title;
+// 				list.insertBefore(new_elem,next_elem);
+
+// 			},
+// 			error: function(error){
+// 				console.log(error);
+// 			}
+
+// 		});
+// 	});
+// }
 
 
-var myfunction = function(){
-// 	var theUrl = "https://www.google.co.in/webhp?hl=en&sa=X&ved=0ahUKEwjMjs7H68nRAhXJCJoKHbpCBcwQPAgD";
-//     var xmlHttp = new XMLHttpRequest();
-//     console.log("outside ");
-//     xmlHttp.onreadystatechange = function() {
-//     	console.log("xml"+xmlHttp.readyState+"and"+xmlHttp.status); 
-//         if (xmlHttp.readyState == 4 || xmlHttp.status == 200){
-//             console.log("inside xml");
-//         	return xmlHttp.responseText;
-//         }
-//     }
-//     console.log("3");
-//     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-//     console.log("4");
-//     xmlHttp.send(null);
-//     console.log("5");
+// var createUpvote = document.getElementById("create_upvote");
 
-// });                                                    
-window.location.replace("http://localhost:3000/show?q_id",'height=400,width=600,left=10,top=10,,scrollbars=yes,menubar=no'); return false;
-};
-var content = document.getElementsByClassName("qcontent");
-if(content){
-	for (var i = 0; i < content.length; i++) {
-    content[i].addEventListener('click', myfunction, false);
-}
+// if(createUpvote){
+// 	createUpvote.addEventListener('submit', function(event){
+// 		event.preventDefault();
+// 		console.log("tried submitting");
+// 		var url = "/upvote_json";
 
-}
+
+// 	});
+// }

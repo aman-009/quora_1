@@ -1,0 +1,11 @@
+
+<%=form_tag '/question',id: "create_question" do %><!--url is useless-->
+	<%=text_area_tag :title, "title",class: "form-control"%><br>
+	<%=text_field_tag :content, "description", class: "form-control"%><br>
+	<%=submit_tag "Ask question" ,class: "btn btn-default"%>
+<%end%>
+
+
+<div class = "btn btn-default">
+<%=link_to "back" ,url_for(controller: :home,action: :back)%>
+</div>

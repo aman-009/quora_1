@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  
+  devise_for :users
+
   get '/'=>'home#index'
+
+  post '/upvote_i' =>'home#upvote_i'
 
   post '/question'=>'home#question'
 
@@ -13,6 +18,8 @@ Rails.application.routes.draw do
 
   post '/upvote'=>'home#upvote'
 
+  get '/ask_question' => 'home#ask_question'
+  
   get '/show'=>'home#show'
 
   get '/profile' => 'home#profile'
@@ -23,15 +30,15 @@ Rails.application.routes.draw do
     
   post '/delete'=>'home#delete'
 
-  post '/signin'=>'authentication#signin'
+  # post '/signin'=>'authentication#signin'
 
-  post '/signup'=>'authentication#signup'
+  # post '/signup'=>'authentication#signup'
 
-  get '/signin'=>'authentication#signin_get'
+  # get '/signin'=>'authentication#signin_get'
 
-  get '/signup'=>'authentication#signup_get'
+  # get '/signup'=>'authentication#signup_get'
 
-  get '/logout'=>'authentication#logout'
+   post '/logout'=>'home#logout'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

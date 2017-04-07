@@ -3,43 +3,50 @@
 <head>
   <title>Quora</title>
 
-  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Kreon|Roboto:300,400" rel="stylesheet">
+
 </head>
 <body>
 <header>
 	<div id = "logo">
-		<h2 style="color:#b92b27">Quora</h2>
+		<h3>Quora</h3>
 	</div>
 	<div id = "search">
-		<%= form_tag '/', method: :get do %>
-			<%= text_field_tag 'search' %>
-			<%= submit_tag 'search' %>
+		<%= form_tag '/',method: :get ,class: "form-inline" do %>
+			<%= text_field_tag :title, "Ask or Search Quora", class: "form-control" %>
+			<%= submit_tag 'Ask Question' ,class: "btn btn-default btn-sm"%>
 		<% end %>
 
 	</div>
 	<div id = "home">
-		<h3><i class="fa fa-h-square" aria-hidden="true"></i>Home</h3>
+		<h4><i class="fa fa-h-square" aria-hidden="true"></i>Home</h4>
 	</div>
 	<%if current_user%>
 	<div id = name>
-		<h3><%=current_user.email%></h3>
-		<%=link_to "logout", url_for(controller: :authentication,action: :logout)%>
+		<h4><%=current_user.email%></h4>
+
+		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 	</div>
 	<%end%>
 </header>
 <section id = "mainsection">
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
 <%= yield %>
 </section>
-<footer>
+<!--<footer>
 <div class = "yo"><h3>copyright@kidding</h3></div>
 <div class="floatingTop"><a href="#top" id="toTop">^ </a></div>
-
-</footer>
+</footer>-->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 </body>

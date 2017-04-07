@@ -1,28 +1,68 @@
-<div id = "q">
+<div class = "q">
+
+
 <div class = "qcontent">
-	<li><%=q.title%></li>
+	<li><%=link_to q.title ,url_for(controller: :home,action: :show,q_id:q.id)%></li>
 </div>
+
+<div class = "qanswer"><!--have to render this-->
+
+	<%answer = @answers.where(question_id: q.id).last%>
+
+	<%if(answer)%>
+		
+	<div class="user-inline">
+	    <div class="dummy">
+	      <img class="tweetImage" src="https://pbs.twimg.com/profile_images/616147175987265536/EQm39fW7_bigger.png">
+	    </div>
+  	
+	  	
+	  	<div class = "userdetail">
+			<div class = "uanswer">
+				<%@users.each do |u|%>
+					<%if(answer.user_id == u.id)%>
+						<li><%=link_to u.email, url_for(controller: :home,action: :profile,user: u.id)%></li>
+					<%end%>
+				<%end%>
+			</div>
+		
+
+			<div class="time-inline">
+				<li>Written . <%= answer.created_at.to_formatted_s(:short) %></li>
+			</div>
+		</div>
+
+	</div>
+
+	<div class ="yloo">
+		<li><%=answer.content%></li>
+	</div>
+		
+		
+		<%=form_tag '/upvote_i' ,class: "upvote" do%>
+			<%upvote = current_user.upvote.where(answer_id:answer.id).first%>
+			<%if upvote%>
+				<%=submit_tag "Upvoted", class: "btn btn-default btn-sm"%> 
+			<%else%>
+				<%=submit_tag "Upvote",class: "btn btn-default btn-sm"%> 
+			<%end%>
+			<%=hidden_field_tag :q_id, q.id%>
+			<%=hidden_field_tag :answer, answer.id%>
+	    <%end%>
+	<%end%>
+</div>
+
 
 <div id = "user">
 
-<%=link_to "show" ,url_for(controller: :home,action: :show,q_id:q.id)%> 
+	<div id = "qresponse">
+		<%if current_user.id == q.user_id %>
+			
+			<%=link_to "edit", url_for(controller: :home,action: :edit,q_id:q.id)%>
 
-<%@users.each do|u| %>
-	<%if u.id == q.user_id%>
-    <li><%=u.email%></li>
-		<%=link_to "visit", url_for(controller: :home,action: :profile,user: u.id)%>
-	
-	<%end%>
-<%end%>
-
-<div id = "qresponse">
-	<%if current_user.id == q.user_id %>
+			<%=link_to "delete", url_for(controller: :home,action: :delete,q_id:q.id),method: :post%>
 		
-		<%=link_to "edit", url_for(controller: :home,action: :edit,q_id:q.id)%>
-
-		<%=link_to "delete", url_for(controller: :home,action: :delete,q_id:q.id),method: :post%>
-	
-	<%end%>  
-</div>	
+		<%end%>  
+	</div>	
 </div>
 </div>

@@ -20,23 +20,9 @@
 }
 
 
-@font-face {
-    font-family: ub;
-    src: url(Ubuntu-Bold.ttf);
-}
-
-@font-face {
-    font-family: roboto;
-    src: url(Roboto-Thin.ttf);
-}
-@font-face {
-    font-family: robo;
-    src: url(Roboto-Bold.ttf);
-}
-
 
 body{
-
+	
 }
 
 header{
@@ -48,13 +34,29 @@ header{
 	justify-content:space-between;
 	box-sizing: border-box;
 	border-top:3px solid #b92b27;
-	border-bottom: 2px solid #ccc; 
-	box-shadow: 0px 0px 27px 0px rgba(182,182,182,0.83);
+	border-bottom: 1px solid #ccc; 
+	box-shadow: 0px 0px 7px 0px rgba(182,182,182,0.83);
 	padding-left: 150px;
 	padding-right: 150px;
 	align-items: center;
 	color: #c1c1c1;
 	position: fixed;
+
+}
+
+#name{
+	display: flex;
+	align-items: center; 
+}
+
+#logo{
+	color:#b92b27;
+	font-weight: bolder;
+	margin-bottom: 10px;
+}
+
+#name h4{
+	margin-right: 15px;
 }
 
 #search{
@@ -62,10 +64,10 @@ header{
 }
 
 #mainsection{
-	margin-top:70px; 
-	margin-left: 350px;
+	margin-top:40px; 
+	margin-left: 28%;
 	margin-bottom:50px;
-	margin-right: 150px;
+	margin-right: 28%;
 }
 
 #questions ul{
@@ -73,25 +75,42 @@ header{
 	list-style-type: none;
 }
 
-#q{
-	margin-top: 10px;
+.q{
+	margin-top: 20px;
+	padding-top: 10px;
 	margin-bottom: 10px;
-	padding-bottom: 10px;
-	border-bottom:1px solid #ccc;
-
+	border-top:1px solid #ccc;
+	cursor: pointer;
 }
 #user{
 	display: flex;
 	justify-content: space-around;
 
 }
-.qcontent li{
-	font-family: myFirstFont;
-	font-size: 30px;
-	font-weight: solid;
+.qcontent a{
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: none !important;
+	color: black;
+	font-family: 'Roboto', serif;
 }
 
+.qanswer a{
+	text-decoration: none !important;
+	color: black;
+}
 
+.uanswer li:hover{
+	text-decoration: underline;
+}
+
+.qcontent li:hover {
+    text-decoration: underline;
+}
+
+.q:hover{
+	background-color: #f5f8fa;
+}
 
 footer{
 	height: 30px;
@@ -99,10 +118,111 @@ footer{
 	border-top: 3px solid #ccc;
 	bottom: 0;
 	position: fixed;
-	box-shadow: 0px 0px 27px 0px rgba(182,182,182,0.83);
+	box-shadow: 0px 0px 13px 0px rgba(182,182,182,0.83);
 	padding: 5px;
 	background-color: #fff;
 	color:#c1c1c1;
 	display: flex;
 	justify-content: space-around;
+}
+
+.time-inline li{
+	color: #c1c1c1;
+	font-size: 15px;
+}
+
+.userdetail{
+	margin-left: 10px;
+}
+
+.dummy img{
+	width: 40px;
+	height: auto;
+	border-radius: 100%;
+}
+
+.user-inline{
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+.yloo{
+	font-family: 'Roboto', serif;
+	font-size: 16px;
+	font-weight: lighter;
+}
+
+.some_class{
+	height: 25px;
+	width: 100px;
+	margin-top: 10px;
+	background-color: #f1f8fb;
+	border-color: #bbcadc;
+	border-width: 1px;
+	color: #2b6dad;
+	font-size: 14px;
+	border-radius: 10%;
+
+}
+
+.upvote .btn-default{
+	font-size: 13px;
+	background-color: #f1f8fb;
+	border: 1px solid #bbcadc;
+	color: #2b6dad;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px 0 rgba(200,200,200,0.2);
+}
+
+#search .form-control{
+	width: 270px;
+	height: 28px;
+	background-color: #f5f8fa;
+	color: #c1c1c1;
+}
+
+#ques a{
+	color: #c1c1c1;
+	font-size: 20px;
+	font-weight: bold;
+	border-top: 1px solid #ccc;
+	padding-top: 30px;
+}
+
+#top{
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+
+#ques .dummy img{
+	width: 18px;
+}
+
+#alig{
+	display: flex;
+}
+
+#ques .name{
+	font-size: 13px;
+	color: grey;
+	padding-left: 5px;
+}
+
+#ques a:hover{
+	text-decoration: none !important;
+	color: #2b6dad;
+}
+
+.btn-default{
+	height: 28px;
+}
+
+#home h4{
+	font-size: 16px;
+}
+
+#name h4{
+	font-size: 16px;
 }

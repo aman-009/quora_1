@@ -2,8 +2,8 @@
 
 
 
-<br>Title:<%=@question.title%><br>
-<h3>Q.<%=@question.content%></h3>
+<br>Description:<%=@question.content%><br>
+<h3>Q.<%=@question.title%></h3>
 
 <%if current_user.id != @question.user_id%>
 <%=form_tag '/answer' do%>
@@ -15,13 +15,21 @@
 <h3>Answers</h3>
 <ul>
 <%@answers.each do |a|%>
+	
 	<li><%=a.content%></li>
-	<%=form_tag '/upvote' do%>
+
+	<%@users.each do |u|%>
+		<%if(a.user_id == u.id)%>
+			BY:<%=u.email%>
+		<%end%>
+	<%end%>
+
+	<%=form_tag '/upvote',class: "upvote" do%>
 		<%upvote = current_user.upvote.where(answer_id:a.id).first%>
 		<%if upvote%>
-			<%=submit_tag "upvoted"%> 
+			<%=submit_tag "upvoted",class: "btn btn-default"%> 
 		<%else%>
-			<%=submit_tag "upvote"%> 
+			<%=submit_tag "upvote",class: "btn btn-default"%> 
 		<%end%>
 		<%=hidden_field_tag :q_id, @question.id%>
 		<%=hidden_field_tag :answer, a.id%>

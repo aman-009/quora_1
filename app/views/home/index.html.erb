@@ -1,19 +1,24 @@
 
 
-<h3> Ask question </h3>
 
 
+<h4 id = "top">Top Stories For You</h4>
 
 
-<%=form_tag '/question' do %>
-	<%=text_field_tag :title, "title"%><br>
-	<%=text_area_tag :content, "content"%><br>
-	<%=submit_tag "submit"%>
-<%end%>
+<div id = ques>
+	<div id = "alig">
+		<div class="dummy">
+	      <img class="tweetImage" src="https://pbs.twimg.com/profile_images/616147175987265536/EQm39fW7_bigger.png">
+	    </div>
+	    <div class="name">
+	    	<%=current_user.email%>
+	    </div>
+	</div>
+	<%= link_to "What is your question?" ,  url_for(controller: :home, action: :ask_question) %>
+</div>
 
 <div id = questions>
 <ul>
-<h4><li>Top Stories for you</li></h4>
 <%@question.each do|q|%>
 	<%=render 'question', :q=>q, :users=>@users%>    <!-- #question is here a partial file  -->
 <%end%>
